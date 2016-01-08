@@ -1,0 +1,41 @@
+<template name="newProduct">
+	<h3> New Product Path </h3>
+
+	<a href="" class="b">RESET DB</a>
+	<br><br><br>
+
+ 	<form class="formy">
+		<label>title</label>
+		<input type="text" name="title" value="testingtitles">
+		<br>
+		<label>price</label>
+		<input type="text" name="price" placeholder="$ " value="34.98" class="auto">
+		<br>
+		<label>description</label>
+		<textarea name="description" placeholder="testtesttest"> Would this stuff fill it up ? </textarea>
+		<br>
+		<input type="file" name="image" class="myFileInput">
+		<input type="submit" value="Submit">
+    </form>
+
+
+    {{#each image}}
+    	<p>
+    		<!-- <img src="{{this.url storing='/images/storing.gif' store='original'}}"> -->
+    		<img src="{{this.url storing='/images/storing.gif' store='thumb'}}">
+    		<a href="" class="del" data="{{this._id}}" data-confirm="are you sure?">Remove image</a>
+    	</p>
+    {{/each}}
+
+    <hr>
+
+
+    {{#each product}}
+    	<p>
+	    	<b>{{title}}</b>
+	    	<span>$ {{price}}</span>
+	    	{{description}}
+	    	<a href="{{pathFor route='showProduct'}}">Show</a>
+    	</p>
+    {{/each}}
+</template>
