@@ -42,9 +42,9 @@ Template.newProduct.events({
     },
 
     "click .b": function(){
-		Meteor.call('removeAllProducts');
-		Meteor.call('removeAllImages');  
-		Meteor.call('removeAllUsers');
+  		Meteor.call('removeAllProducts');
+  		Meteor.call('removeAllImages');  
+  		Meteor.call('removeAllUsers');
     },
 
     "click .del": function(){

@@ -4,6 +4,7 @@
 	  <a href="{{pathFor route='login'}}">login</a>
 	  <a href="{{pathFor route='newUser'}}">register</a>
 	  <a href="{{pathFor route='newProduct'}}">New Product</a>
+	  <span class="text-danger">{{currentUser.username}}</span>
 	  {{> flashMessages}}
 	  {{> yield}}
 </template>
