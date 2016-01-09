@@ -53,7 +53,6 @@ Template.newProduct.events({
     }
 });
 
-
 Template.newProduct.helpers({
     'product': function(){
         return Products.find({}, {sort: {createdAt:-1}});
@@ -63,22 +62,10 @@ Template.newProduct.helpers({
     }
 });
 
-// Template.newProduct.onCreated(function(){
-//     console.log("The 'login' template was just created.");
-// });
 
 Template.newProduct.onRendered(function(){
-	// Meteor.call('removeAllProducts');
-	// Meteor.call('removeAllImages');
     $('.auto').autoNumeric('init', {
     	aSign: '$ '
     });
 });
 
-// Template.showProduct.onRendered(function(){
-// 	return Products.find({id});
-// 	console.log(id);
-// });
-// Template.newProduct.onDestroyed(function(){
-//     console.log("The 'login' template was just destroyed.");
-// });

@@ -1,23 +1,73 @@
-Router.route('/newUser');
-Router.route('/login');
+//---------   main routes ------------ //
+Router.configure({layoutTemplate: 'index'});
+
 Router.route('/',{
 	template: "home",
 	name: "home"
 });
 
-Router.configure({
-    layoutTemplate: 'main'
-});
 
-Router.route('/products/new',{
-	template: "newProduct",
-	name: "newProduct"
-});
+//---------     users     ------------ //
+Router.route('/newUser');
+Router.route('/login');
 
-Router.route('/products/:_id',{
+
+//---------     products  ------------ //
+Router.route('newProduct');
+
+Router.route('/showProduct/:_id',{
 	template: "showProduct",
 	name: "showProduct",
 	data: function(){
 		return Products.findOne({_id: this.params._id});
 	}
 });
+
+
+//---------     note    ------------ //
+/*
+
+   Try to keep the names unified
+   attempt to give the same value to 
+                - route
+                - template
+                - name
+                - javascript file
+
+
+
+ㅤㅤㅤ▀ㅤㅤㅤ█ █ㅤ█▀▀▄ㅤ▄▀▀▄ㅤ█   █
+ㅤㅤㅤ█ㅤㅤㅤ█▀▄ㅤ█  █ㅤ█  █ㅤ█▄█▄█
+ㅤㅤㅤ▀ㅤㅤㅤ▀ ▀ㅤ▀  ▀ㅤ ▀▀ ㅤ ▀ ▀
+
+▀█▀ █ █ㅤ█▀   █▀ █▀ █▀ █ ㅤㅤ█▀▄ █▀▄ ▄▀▄
+ █  █▀█ㅤ█▀   █▀ █▀ █▀ █ ㅤㅤ█▀▄ █▄▀ █ █
+ ▀  ▀ ▀ㅤ▀▀   ▀  ▀▀ ▀▀ ▀▀ㅤㅤ▀▀  ▀ ▀  ▀ 
+
+                      ▄█▀▀▀▀▀█▄
+            ▄▄▄▄▄   █▀        ▀█
+           █    ▀█▄█           ▀█
+         ██       █      ▄▄      █
+        █          █ ▄▄▀▀  ▀▀▀▀   █
+       █           █    ▀▀▄▄▄▀▀   █
+      ▐             █             █
+      ▐             █ ▀▀▀▄    ▄   █
+      ▐             █     ▀  ▀ ▀▄ █
+      ▐             █ ███▄        █
+      ▐             █    ▀    ██ ▐
+      ▐             █       ▄     █▄▄
+      ▐            █         ▌    ██ ▌
+      ▐             █   ▄▀ ▄ ▌   █   ▌
+       █            █    ▀  ▀   █    ▌
+        █            █   ▄▄▄▄  █     ▌
+      ▄▀▀▄   ▌       ██       █▌     ▌
+    ▄▀    █  ▌        ▀▀█████▀▀      ▌
+  ▄▀       ███▌          ▌           ▌
+▄▀            █                     █
+█       ▄██▀▀▀▀                     ▌
+█     ▄██▄                          ▌
+█        ▀▄      ▄▀▀▀▀▄            █
+█          ▀▄  ▄▀  ▄▄▄▀            ▌
+▀▄           ▀▀    █               ▌
+█ ▀▄                ▀▀▀▀▀▄         ▌
+█   ▀▄▄               ▄▄▄▀         ▌*/
