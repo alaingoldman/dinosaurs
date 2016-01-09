@@ -11,7 +11,7 @@ Template.login.events({
     console.log("check: " + check);
     Meteor.loginWithPassword(email, password, function(err){
       if (err){
-        FlashMessages.sendError("Either user or email is incorrect");
+        FlashMessages.sendError("Either email or password is incorrect");
       }
       else{
         FlashMessages.sendSuccess("Logged in");
