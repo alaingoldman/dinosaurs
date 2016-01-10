@@ -7,11 +7,12 @@ Template.newUser.events({
         "password": $('[name=password]').val(),
            "email": $('[name=email]').val()
       }
-      Meteor.call('registerUsers', options, function(error, id){
+      Meteor.call('registerUsers', options, function(error){
         if(error){
             FlashMessages.sendError(error.reason);
         }
         else{
+            Meteor.call('emailUserVerification', options.email);
             FlashMessages.sendSuccess("Check your email to verify");
         }
       });
