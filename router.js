@@ -13,7 +13,12 @@ Router.route('/login');
 Router.route('/recover');
 Router.route('/reset/:token',{
   template: "reset",
-  name:     "reset"
+  name:     "reset",
+  onBeforeAction: function(){
+    //console.log(this.params.token);
+    resetToken = this.params.token;
+    this.next();
+  }
   // ,
   // data: function(){
   //   //return this.params.token;
