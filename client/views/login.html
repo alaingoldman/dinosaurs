@@ -1,6 +1,6 @@
 <template name="login">
 
-	<h3>Login Page</h3>
+	<h3>Login Page {{token}}</h3>
 	 <form id="login-form" action="action">
 	   <div>
 	   	 <p>email: </p>
@@ -12,5 +12,5 @@
 	     <input type="submit" id="login-button" value="Sign in" />
 	  </div>
 	</form> 
-
+	<a href="{{pathFor route='recover'}}" id="forgotPassword">forgot password?</a>
 </template>
