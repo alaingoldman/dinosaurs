@@ -16,7 +16,6 @@ Template.login.events({
               FlashMessages.sendSuccess("Logged in");
              }
           });
-          return false; 
       }else if(data == "unverified"){
           FlashMessages.sendError("Check your email for a verification link");
       }else{
