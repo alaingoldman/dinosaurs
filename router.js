@@ -45,14 +45,9 @@ Router.route('/reset/:token',{
   template: "reset",
   name:     "reset",
   onBeforeAction: function(){
-    //console.log(this.params.token);
     resetToken = this.params.token;
     this.next();
   }
-  // ,
-  // data: function(){
-  //   //return this.params.token;
-  // }
 })
 
 
@@ -67,7 +62,13 @@ Router.route('/showProduct/:_id',{
 	}
 });
 
-
+// Router.route('/editProduct/:_id',{
+//   template: "editProduct",
+//   name: "editProduct",
+//   data: function(){
+//     return Products.findOne({_id: this.params._id});
+//   }
+// });
 
 
 
