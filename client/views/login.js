@@ -14,6 +14,7 @@ Template.login.events({
             }
             else{
               FlashMessages.sendSuccess("Logged in");
+              Router.go('home');
              }
           });
       }else if(data == "unverified"){

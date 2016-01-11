@@ -8,15 +8,21 @@ Router.route('/',{
 
 
 
-
 //--------- check if logged in  --------- //
-// var OnBeforeActions;
-
+var OnBeforeActions;
 OnBeforeActions = {
     loginRequired: function(pause) {
       if (!Meteor.userId()) {
-        this.render('login');
+        //this.render('login'); // if u dont want to change url
+        Router.go('login');
         FlashMessages.sendError("Login please");
+      }else{
+        this.next();
+      }
+    },
+    logoutRequired: function(pause) {
+      if (Meteor.userId()) {
+        Router.go('home');
       }else{
         this.next();
       }
@@ -26,9 +32,9 @@ OnBeforeActions = {
 Router.onBeforeAction(OnBeforeActions.loginRequired, {
     only: ['newProduct']
 });
-
-
-
+Router.onBeforeAction(OnBeforeActions.logoutRequired, {
+    only: ['login','recover','newUser']
+});
 
 
 //---------     users     ------------ //
