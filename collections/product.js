@@ -27,6 +27,12 @@ ProductSchema = new SimpleSchema({
         autoform: {
             type: "hidden"
         }
+    },
+    user: {
+        type: String,
+        autoValue: function(){
+            return this.userId
+        }
     }
 });
 
