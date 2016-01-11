@@ -16,7 +16,7 @@ Template.newProduct.events({
           description: description
       }, function(error,id){
       	if(error){
-      		FlashMessages.sendSuccess(error.message);
+      		FlashMessages.sendError(error.message);
       	}else{
       		FlashMessages.sendSuccess("Message");
       		//Router.go('showProduct', id);
@@ -39,12 +39,6 @@ Template.newProduct.events({
            }
          });
       });
-    },
-
-    "click .b": function(){
-  		Meteor.call('removeAllProducts');
-  		Meteor.call('removeAllImages');  
-  		Meteor.call('removeAllUsers');
     },
 
     "click .del": function(){
