@@ -7,6 +7,30 @@ Router.route('/',{
 });
 
 
+
+
+//--------- check if logged in  --------- //
+// var OnBeforeActions;
+
+OnBeforeActions = {
+    loginRequired: function(pause) {
+      if (!Meteor.userId()) {
+        this.render('login');
+        FlashMessages.sendError("Login please");
+      }else{
+        this.next();
+      }
+    }
+};
+
+Router.onBeforeAction(OnBeforeActions.loginRequired, {
+    only: ['newProduct']
+});
+
+
+
+
+
 //---------     users     ------------ //
 Router.route('/newUser');
 Router.route('/login');
@@ -36,6 +60,11 @@ Router.route('/showProduct/:_id',{
 		return Products.findOne({_id: this.params._id});
 	}
 });
+
+
+
+
+
 
 
 //---------     note    ------------ //
