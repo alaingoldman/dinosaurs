@@ -3,9 +3,9 @@ Template.newUser.events({
     'submit form': function(event){
       event.preventDefault();
       var options = {
-        "username": $('[name=username]').val(),
-        "password": $('[name=password]').val(),
-           "email": $('[name=email]').val()
+        "username": $('[name=username]').val().toLowerCase(),
+        "password": $('[name=password]').val().toLowerCase(),
+           "email": $('[name=email]').val().toLowerCase()
       }
       Meteor.call('registerUsers', options, function(error){
         if(error){
