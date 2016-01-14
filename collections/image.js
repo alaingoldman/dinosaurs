@@ -7,6 +7,7 @@ var createThumb = function(fileObj, readStream, writeStream) {
 
 
 Images = new FS.Collection("images", {
+  
   stores: [
     new FS.Store.FileSystem("thumb", { transformWrite: createThumb }),
     new FS.Store.FileSystem("original")

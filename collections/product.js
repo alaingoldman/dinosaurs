@@ -1,6 +1,7 @@
 Products = new Meteor.Collection('products');
 
 ProductSchema = new SimpleSchema({
+// products uses foreign key for user
     title: {
         type: String,
         label: "Title",
@@ -33,7 +34,17 @@ ProductSchema = new SimpleSchema({
         autoValue: function(){
             return this.userId
         }
-    }
+    },
+    draft: {
+        type: Boolean,
+        optional: true
+    },
+     images: {
+         type: [String],
+         label: "Images",
+         minCount: 1,
+         maxCount: 5
+     }
 });
 
 

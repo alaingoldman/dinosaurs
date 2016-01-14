@@ -1,0 +1,11 @@
+<template name="votes">
+	<h3> new vote </h3>
+	 	<form class="vote">
+			<input type="text" name="text" value="text" id="text">
+			<br><br>
+	    </form>
+	    <br>
+	{{#each vote}}
+		<p> {{text}} </p>
+	{{/each}}
+</template>

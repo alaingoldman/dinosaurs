@@ -72,8 +72,6 @@ Router.route('/showProduct/:_id',{
 
 
 
-
-
 //---------     note    ------------ //
 /*
 
