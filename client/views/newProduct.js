@@ -102,6 +102,9 @@ Template.newProduct.onRendered(function(){
 });
 
 Template.newProduct.created = function() {
-  Meteor.call("clearUserFolders");
   imageCount = 0;
 }
+
+Template.newProduct.onDestroyed(function () {
+  Meteor.call("clearUserFolders");
+});
