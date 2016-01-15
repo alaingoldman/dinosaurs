@@ -1,2 +1,2 @@
-// Folder holds the product image association
 Folders = new Meteor.Collection('folders');
+// Holds the product image user association

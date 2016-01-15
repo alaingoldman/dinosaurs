@@ -1,7 +1,6 @@
 Products = new Meteor.Collection('products');
 
 ProductSchema = new SimpleSchema({
-// products uses foreign key for user
     title: {
         type: String,
         label: "Title",
@@ -49,9 +48,3 @@ ProductSchema = new SimpleSchema({
 
 
 Products.attachSchema(ProductSchema);
-
-
-// how to check validation
-// Products.insert({title: "Ulysses", author: "James Joyce"}, function(error, result) {});
-
-// The list of errors is available on `error.invalidKeys` or by calling Products.simpleSchema().namedContext().invalidKeys()
