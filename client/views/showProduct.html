@@ -4,8 +4,10 @@
 	<p>${{price}}</p>
 	<p>{{description}}</p>
 	<p>seller: {{seller.username}}</p>
-
-
+	{{#if isSeller}}
+	  <h2> This ur item btw </h2>
+	  <a href="{{pathFor route='editProduct'}}">Edit</a>
+	{{/if}}
 	{{#each image}}
 		<p>
 			<img src="{{this.url storing='/images/storing.gif' store='thumb'}}">

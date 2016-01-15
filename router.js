@@ -62,13 +62,13 @@ Router.route('/showProduct/:_id',{
 	}
 });
 
-// Router.route('/editProduct/:_id',{
-//   template: "editProduct",
-//   name: "editProduct",
-//   data: function(){
-//     return Products.findOne({_id: this.params._id});
-//   }
-// });
+Router.route('/editProduct/:_id',{
+  template: "editProduct",
+  name: "editProduct",
+  data: function(){
+    return Products.findOne({_id: this.params._id});
+  }
+});
 
 
 
