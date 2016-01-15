@@ -5,7 +5,7 @@ Template.newProduct.events({
       // this section identifies the folders
       // then creates two arrays. One with the new images and the other
       // with the new folders
-            var folders    = Folders.find({user: Meteor.userId(), claimed: false});
+            var folders    = Folders.find({user: Meteor.userId()});
             var newImages  = [];
             var newFolders = [];
 
@@ -38,7 +38,7 @@ Template.newProduct.events({
         		FlashMessages.sendError(error.message);
         	}else{
         		FlashMessages.sendSuccess("Success");
-            Meteor.call("updateFolders", newFolders, id);
+            Meteor.call("removeUserFolders", newFolders);
         		// Router.go('showProduct', id);
         		// Router.go('showProduct', {_id: id});
         	}
@@ -59,7 +59,6 @@ Template.newProduct.events({
                 folderFile  = {
                   user:    Meteor.userId(),
                   image:   fileObj._id,
-                  claimed: false,
                   product: null 
                 }
                 Folders.insert(folderFile);
@@ -87,7 +86,7 @@ Template.newProduct.helpers({
     },
     'image': function(){
         newImages = [];
-        newFolders =  Folders.find({user: Meteor.userId(), claimed: false});
+        newFolders =  Folders.find({user: Meteor.userId()});
         for(i=0;i<newFolders.count();i++){
             newImages.push(newFolders.fetch()[i].image);
         }
@@ -97,7 +96,6 @@ Template.newProduct.helpers({
 
 
 Template.newProduct.onRendered(function(){
-    // delete all images that belong this this user  
     $('.auto').autoNumeric('init', {
     	aSign: '$ '
     });
