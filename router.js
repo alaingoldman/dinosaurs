@@ -26,6 +26,15 @@ OnBeforeActions = {
       }else{
         this.next();
       }
+    },
+    ownerRequired: function(pause){
+      if(!Meteor.userId()){
+        Router.go('home');
+      }else if(Meteor.userId()._id != this.user){
+        Router.go('home');
+      }else{
+        this.next();
+      }
     }
 };
 
@@ -35,7 +44,9 @@ Router.onBeforeAction(OnBeforeActions.loginRequired, {
 Router.onBeforeAction(OnBeforeActions.logoutRequired, {
     only: ['login','recover','newUser']
 });
-
+Router.onBeforeAction(OnBeforeActions.ownerRequired, {
+    only: ['editProduct']
+});
 
 //---------     users     ------------ //
 Router.route('/newUser');
