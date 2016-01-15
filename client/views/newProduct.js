@@ -86,7 +86,12 @@ Template.newProduct.helpers({
         return Products.find({}, {sort: {createdAt:-1}});
     },
     'image': function(){
-        return Images.find();
+        newImages = [];
+        newFolders =  Folders.find({user: Meteor.userId(), claimed: false});
+        for(i=0;i<newFolders.count();i++){
+            newImages.push(newFolders.fetch()[i].image);
+        }
+        return Images.find({'_id':{'$in':newImages}});
     }
 });
 
