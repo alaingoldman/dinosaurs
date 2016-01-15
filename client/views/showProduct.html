@@ -4,4 +4,12 @@
 	<p>${{price}}</p>
 	<p>{{description}}</p>
 	<p>seller: {{seller.username}}</p>
+
+
+	{{#each image}}
+		<p>
+			<img src="{{this.url storing='/images/storing.gif' store='thumb'}}">
+		</p>
+	{{/each}}
+	
 </template>
