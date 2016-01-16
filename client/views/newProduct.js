@@ -48,32 +48,31 @@ Template.newProduct.events({
     },
 
     'change .myFileInput': function(event, template) {
-      if(imageCount >= 4){
-        FlashMessages.sendError("You can't upload more than 4 images");
-      }else{
          FS.Utility.eachFile(event, function(file) {
-           Images.insert(file, function (err, fileObj) {
-             if (err){
-                FlashMessages.sendError("Images only");
-             } else {
-                folderFile  = {
-                  user:    Meteor.userId(),
-                  image:   fileObj._id,
-                  product: null 
+          imageCount++;
+           if(imageCount >= 5){
+             FlashMessages.sendError("You can't upload more than 4 images");
+            }else{
+              Images.insert(file, function (err, fileObj) {
+                if (err){
+                  FlashMessages.sendError("Images only");
+                  imageCount--;
+                } else {
+                  folderFile  = {
+                    user:    Meteor.userId(),
+                    image:   fileObj._id,
+                    product: null 
+                  }
+                  Folders.insert(folderFile);
+                  console.log("1 uploaded");
+                 var imagesURL = {"profile.image": "/cfs/files/images/" + fileObj._id};
+                $(".myFileInput").val("");
                 }
-                Folders.insert(folderFile);
-                imageCount++;
-               var imagesURL = {"profile.image": "/cfs/files/images/" + fileObj._id};
-              $(".myFileInput").val("");
-             }
-
-           });
-        });
-      }
+              });
+            }
+         });
     },
-
     "click .del": function(){
-    	// check if it belongs to this user
     	Meteor.call('removeThisImage', this._id, function(){
         imageCount--;
       });	
