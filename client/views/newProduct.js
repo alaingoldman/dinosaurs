@@ -27,7 +27,6 @@ Template.newProduct.events({
   	      // convert the price string to a float and replaces the comma and $
         var description = $('[name=description]').val();
 
-        // attempts to create a product
         Products.insert({
             title: title,
             price: price,
@@ -37,10 +36,8 @@ Template.newProduct.events({
         	if(error){
         		FlashMessages.sendError(error.message);
         	}else{
-        		FlashMessages.sendSuccess("Success");
             Meteor.call("removeUserFolders", newFolders);
-        		// Router.go('showProduct', id);
-        		// Router.go('showProduct', {_id: id});
+        		Router.go('showProduct', {_id: id});
         	}
         });
       }
@@ -64,7 +61,6 @@ Template.newProduct.events({
                     product: null 
                   }
                   Folders.insert(folderFile);
-                  console.log("1 uploaded");
                  var imagesURL = {"profile.image": "/cfs/files/images/" + fileObj._id};
                 $(".myFileInput").val("");
                 }
