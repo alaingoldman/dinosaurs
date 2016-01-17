@@ -22,7 +22,14 @@ Template.editProduct.events({
 	     });
 	},
 	"click .del": function(){
-		Meteor.call('removeThisImage', this._id, function(){
+		product = Products.findOne({"images":this._id})
+
+		Meteor.call('editOutThisImage', this._id, product,function(){
+			// console.log("0: test");
+			// console.log("1: " + this._id);
+			//
+			//console.log('');
+			//
 	    imageCount--;
 	  });	
 	}
