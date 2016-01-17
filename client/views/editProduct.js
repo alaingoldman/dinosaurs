@@ -1,4 +1,28 @@
 Template.editProduct.events({
+	  'submit form': function(event){
+	    event.preventDefault();
+
+
+	      var title       = $('[name=title]').val();
+	      var price       = $('[name=price]').val();
+		      price = price.substring(2); 
+		      price = parseFloat(price.replace(/,/g, ''));
+		      // convert the price string to a float and replaces the comma and $
+	      var description = $('[name=description]').val();
+	      Products.update(this._id, {$set: {
+	      	  title: title,
+	          price: price,
+	          description: description
+	      }},function(error,id){
+	      	if(error){
+	      		FlashMessages.sendError(error.message);
+	      	}else{
+	      		FlashMessages.sendSuccess('updated');
+	      	}
+
+	      });
+
+	},
 	'change .myFileInput': function(event, template) {
 		 
 		 var productId = this._id
@@ -47,3 +71,9 @@ Template.editProduct.helpers({
 Template.editProduct.created = function() {
   imageCount = this.data.images.length;
 };
+
+Template.editProduct.onRendered(function(){
+    $('.auto').autoNumeric('init', {
+    	aSign: '$ '
+    });
+});
