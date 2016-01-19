@@ -29,6 +29,8 @@ cfs:standard-packages
 cfs:gridfs
 cfs:graphicsmagick
 cfs:filesystem
+cfs:s3
 accounts-password
 gfk:mailgun-api
 email
+peerlibrary:aws-sdk
