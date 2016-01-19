@@ -1,0 +1,1 @@
+how to start with settings:    meteor --settings private/settings.json
