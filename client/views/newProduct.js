@@ -22,9 +22,9 @@ Template.newProduct.events({
 
         var title       = $('[name=title]').val();
         var price       = $('[name=price]').val();
-  	      price = price.substring(2); 
-  	      price = parseFloat(price.replace(/,/g, ''));
-  	      // convert the price string to a float and replaces the comma and $
+          price = price.substring(2); 
+          price = parseFloat(price.replace(/,/g, ''));
+          // convert the price string to a float and replaces the comma and $
         var description = $('[name=description]').val();
 
         Products.insert({
@@ -33,12 +33,12 @@ Template.newProduct.events({
             description: description,
             images: newImages
         }, function(error,id){
-        	if(error){
-        		FlashMessages.sendError(error.message);
-        	}else{
+          if(error){
+            FlashMessages.sendError(error.message);
+          }else{
             Meteor.call("removeUserFolders", newFolders);
-        		Router.go('showProduct', {_id: id});
-        	}
+            Router.go('showProduct', {_id: id});
+          }
         });
       }
 
@@ -69,9 +69,9 @@ Template.newProduct.events({
          });
     },
     "click .del": function(){
-    	Meteor.call('removeThisImage', this._id, function(){
+      Meteor.call('removeThisImage', this._id, function(){
         imageCount--;
-      });	
+      }); 
     }
 });
 
@@ -85,6 +85,10 @@ Template.newProduct.helpers({
         for(i=0;i<newFolders.count();i++){
             newImages.push(newFolders.fetch()[i].image);
         }
+        xx = Images.find({'_id':{'$in':newImages}});
+        //
+        //
+        //
         return Images.find({'_id':{'$in':newImages}});
     }
 });
@@ -92,7 +96,7 @@ Template.newProduct.helpers({
 
 Template.newProduct.onRendered(function(){
     $('.auto').autoNumeric('init', {
-    	aSign: '$ '
+      aSign: '$ '
     });
 });
 

@@ -1,20 +1,26 @@
-var imageStore = new FS.Store.GridFS("images");
+Images = new Meteor.Collection('images');
 
-var createThumb = function(fileObj, readStream, writeStream) {
-  // Transform the image into a 10x10px thumbnail
-  gm(readStream, fileObj.name()).resize('400').stream().pipe(writeStream);
-};
+var profileStore, profileThumbsStore;
 
-
-Images = new FS.Collection("images", {
-  
-  stores: [
-    new FS.Store.FileSystem("thumb", { transformWrite: createThumb }),
-    new FS.Store.FileSystem("original")
-  ],
-  filter: {
-    allow: {
-      contentTypes: ['image/*'] //allow only images in this FS.Collection
-    }
+thumbStore = new FS.Store.S3('thumb', {
+  accessKeyId: Meteor.settings.accessKeyId,
+  secretAccessKey: Meteor.settings.secretAccessKey,
+  bucket: 'lootfly',
+  folder: 'img/thumb',
+  ACL: "public-read",
+  transformWrite: function(fileObj, readStream, writeStream) {
+    gm(readStream, fileObj.name()).resize("500", "500").stream().pipe(writeStream);
   }
+});
+
+originalStore = new FS.Store.S3('original', {
+  accessKeyId: Meteor.settings.accessKeyId,
+  secretAccessKey: Meteor.settings.secretAccessKey,
+  bucket: 'lootfly',
+  folder: 'img/original',
+  ACL: "public-read"
+});
+
+this.Images = new FS.Collection('profile',{
+  stores: [originalStore, thumbStore]
 });
