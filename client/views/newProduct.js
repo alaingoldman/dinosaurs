@@ -85,24 +85,36 @@ Template.newProduct.helpers({
         for(i=0;i<newFolders.count();i++){
             newImages.push(newFolders.fetch()[i].image);
         }
+
         xx = Images.find({'_id':{'$in':newImages}});
-        //
-        //
-        //
-        return Images.find({'_id':{'$in':newImages}});
+        count = xx.count();
+        if (count > 0){
+          console.log("run");
+          var returnableArray = [];
+          for(i=0;i<count;i++){
+            stringResult = "https://s3.amazonaws.com/lootfly/img/thumb/" + xx.fetch()[i].copies.original.key;
+            returnableArray.push(stringResult);
+          }
+        }
+        return returnableArray;
     }
 });
 
+Template.newProduct.created = function() {
+  // created triggers first
+  imageCount = 0;
+}
 
 Template.newProduct.onRendered(function(){
+  // rendered triggers second
     $('.auto').autoNumeric('init', {
       aSign: '$ '
     });
+  $('.imgload').on('load', function(){
+   alert('one done');
+  });
 });
 
-Template.newProduct.created = function() {
-  imageCount = 0;
-}
 
 Template.newProduct.onDestroyed(function () {
   Meteor.call("clearUserFolders");
