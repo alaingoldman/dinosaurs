@@ -6,3 +6,13 @@
 	color:red;
 	font-weight: bold;
 }
+body{
+	width: 100%;
+}
+img{
+	max-width: 400px;
+}
+img[src='https://s3.amazonaws.com/lootfly/img/original/'],img[src='https://s3.amazonaws.com/lootfly/img/thumb/'] 
+{
+  display: none;
+}
