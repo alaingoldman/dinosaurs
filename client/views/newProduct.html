@@ -17,16 +17,14 @@
 		<input type="submit" value="Submit">
     </form>
 
-
     {{#each image}}
-    	<p>
-    		<img src="{{this}}">
-    		<a href="" class="del" data="{{this._id}}">Remove image</a>
-    	</p>
+      <p>
+        <img src="https://s3.amazonaws.com/lootfly/img/original/{{copies.original.key}}">
+        <a href="" class="del" data="{{this._id}}">Remove image</a>
+      </p>
     {{/each}}
 
     <hr>
-
 
     {{#each product}}
     	<p>
