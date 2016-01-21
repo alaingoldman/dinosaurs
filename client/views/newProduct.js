@@ -85,18 +85,7 @@ Template.newProduct.helpers({
         for(i=0;i<newFolders.count();i++){
             newImages.push(newFolders.fetch()[i].image);
         }
-
-        xx = Images.find({'_id':{'$in':newImages}});
-        count = xx.count();
-        if (count > 0){
-          console.log("run");
-          var returnableArray = [];
-          for(i=0;i<count;i++){
-            stringResult = "https://s3.amazonaws.com/lootfly/img/thumb/" + xx.fetch()[i].copies.original.key;
-            returnableArray.push(stringResult);
-          }
-        }
-        return returnableArray;
+        return Images.find({'_id':{'$in':newImages}});;
     }
 });
 
@@ -110,9 +99,6 @@ Template.newProduct.onRendered(function(){
     $('.auto').autoNumeric('init', {
       aSign: '$ '
     });
-  $('.imgload').on('load', function(){
-   alert('one done');
-  });
 });
 
 
