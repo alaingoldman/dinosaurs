@@ -34,3 +34,4 @@ accounts-password
 gfk:mailgun-api
 email
 peerlibrary:aws-sdk
+grove:stripe-npm

@@ -1,5 +1,7 @@
 <template name="index">
 	  <h1>Welcome to Meteor!</h1>
+	  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	  <script>Stripe.setPublishableKey('pk_test_qbcviXrTTVlIg9x6XJFSk0gA');</script>
 	  <a href="{{pathFor route='home'}}">home</a>
 	 {{#if currentUser}}
 	  <a href="{{pathFor route='newProduct'}}">New Product</a>
