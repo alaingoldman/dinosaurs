@@ -30,7 +30,7 @@ OnBeforeActions = {
 };
 
 Router.onBeforeAction(OnBeforeActions.loginRequired, {
-    only: ['newProduct', 'editProduct']
+    only: ['newProduct', 'editProduct', 'buyProduct']
 });
 Router.onBeforeAction(OnBeforeActions.logoutRequired, {
     only: ['login','recover','newUser']
@@ -70,6 +70,13 @@ Router.route('/editProduct/:_id',{
   }
 });
 
+Router.route('/buyProduct/:_id',{
+  template: "buyProduct",
+  name: "buyProduct",
+  data: function(){
+    return Products.findOne({_id: this.params._id});
+  }
+});
 
 
 //---------     note    ------------ //

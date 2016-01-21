@@ -7,11 +7,13 @@
 	{{#if isSeller}}
 	  <h2> This ur item btw </h2>
 	  <a href="{{pathFor route='editProduct'}}">Edit</a>
+	{{else}}
+	  <p>this not yours bro</p>
 	{{/if}}
 	{{#each image}}
 		<p>
 			<img src="https://s3.amazonaws.com/lootfly/img/original/{{copies.original.key}}">
 		</p>
 	{{/each}}
-	
+	<a href="{{pathFor route='buyProduct'}}">Buy it</a>
 </template>
