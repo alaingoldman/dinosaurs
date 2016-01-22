@@ -1,3 +1,3 @@
-# Meteor Killed the Dinosaurs
+# Meteor.js Killed the Dinosaurs
 
 This application is no longer hosted on a public github repository.
